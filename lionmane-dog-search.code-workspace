@@ -1,0 +1,26 @@
+{
+	"folders": [
+		{
+			"path": "web-app",
+			"name": "web"
+		}
+	],
+	"settings": {
+		"[typescript]": {
+			"editor.defaultFormatter": "vscode.typescript-language-features",
+			"editor.formatOnSave": true
+		},
+		"[javascript]": {
+			"editor.defaultFormatter": "vscode.typescript-language-features",
+			"editor.formatOnSave": true
+		},
+		"[json]": {
+			"editor.defaultFormatter": "vscode.json-language-features",
+			"editor.formatOnSave": true
+		},
+		"editor.tabSize": 4,
+		"typescript.preferences.importModuleSpecifier": "auto",
+		"typescript.suggest.autoImports": true,
+		"editor.insertSpaces": false,
+	}
+}
