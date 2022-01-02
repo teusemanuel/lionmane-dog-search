@@ -1,0 +1,9 @@
+{
+  "/api": {
+    "target": "https://dog.ceo/api/breeds",
+    "secure": false,
+    "pathRewrite": {
+      "^/api": ""
+    }
+  }
+}
