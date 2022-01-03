@@ -103,9 +103,21 @@
             ],
             "scripts": []
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
+            ]
+          }
         }
       }
     }
   },
-  "defaultProject": "lionmane-dog-search-web"
+  "defaultProject": "lionmane-dog-search-web",
+  "cli": {
+    "defaultCollection": "@angular-eslint/schematics"
+  }
 }

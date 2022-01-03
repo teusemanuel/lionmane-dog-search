@@ -18,6 +18,12 @@
             "regexp": "bundle generation complete"
           }
         }
+      },
+      "label": "npm: start",
+      "detail": "npm run lint && npm run version-generate && ng serve --host 0.0.0.0 --port 4200",
+      "group": {
+        "kind": "build",
+        "isDefault": true
       }
     },
     {
