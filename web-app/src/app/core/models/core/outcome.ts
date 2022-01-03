@@ -1,14 +1,14 @@
 import { autoserialize, autoserializeAs, Deserialize } from 'cerialize';
 export class Outcome<T> {
   @autoserialize
-  status = false;
+  status: 'success' | 'error' = 'success';
 
   @autoserializeAs('message')
   result?: T;
 
   static Deserialize<E>(jsonResult: any = null, type: new () => E): Outcome<E> {
     const outcome = new Outcome<E>();
-    outcome.status = jsonResult?.status === true;
+    outcome.status = jsonResult?.status;
     const result = jsonResult?.result;
     const pageInfo = jsonResult?.pageInfo;
 
@@ -20,10 +20,10 @@ export class Outcome<T> {
   }
 
   hasSuccess(): boolean {
-    return this.status;
+    return this.status == 'success';
   }
 
   hasError(): boolean {
-    return !this.status;
+    return this.status != 'success';
   }
 }

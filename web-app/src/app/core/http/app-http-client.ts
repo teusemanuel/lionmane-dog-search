@@ -25,7 +25,7 @@ export interface IRequestOptions {
 }
 
 export interface IRequestObjectOptions<T> extends IRequestOptions {
-  responseObjectType: new () => T;
+  responseRef: new () => T;
 }
 
 export interface IRequestObjectOptionsWithBody<T> extends IRequestObjectOptions<T> {
@@ -58,7 +58,7 @@ export class AppHttpClient {
       map((event) => {
         if (event instanceof HttpResponse) {
           if (options && this.checkIsRequestObjectOptions(options)) {
-            return Deserialize(event.body, options.responseObjectType);
+            return Deserialize(event.body, options.responseRef);
           }
         }
         return undefined;
@@ -216,7 +216,7 @@ export class AppHttpClient {
     return observer.pipe(
       map((body) => {
         if (options && this.checkIsRequestObjectOptions(options)) {
-          return Outcome.Deserialize(body, options.responseObjectType);
+          return Outcome.Deserialize(body, options.responseRef);
         }
         return undefined;
       }),

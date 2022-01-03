@@ -5,7 +5,6 @@ import { NavigationExtras, Router } from '@angular/router';
 import { RequestCacheService } from '@app/core/services/core/request-cache.service';
 import { ResponseCacheService } from '@app/core/services/core/response-cache.service';
 import { SessionStorageService } from '@app/core/storage/session-storage.service';
-import { environment } from '@src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -89,5 +88,5 @@ export class AppErrorHandlerService {
     reader.readAsText(err.error);
   }
 
-  getSnackBarDefaultMessage: () => string = () => (!environment.production ? 'An error occurred: Please check the console.' : 'Ocorreu um erro. Por favor tente novamente mais tarde.');
+  getSnackBarDefaultMessage: () => string = () => 'An error occurred: Please try again later.';
 }
