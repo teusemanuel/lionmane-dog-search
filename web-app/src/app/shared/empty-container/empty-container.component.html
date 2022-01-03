@@ -1,0 +1,12 @@
+<div class="column text-center empty-container">
+	<app-icon *ngIf="topIcon" inline [ngClass]="{'big-icon-no-margin': slim}" class="app-gray-700 big-icon" [class.is-svg]="topIcon?.isSVG === true" [icon]="topIcon"></app-icon>
+	<h1 class="app-gray-700 mat-display-2 empty-container-title" [ngClass]="{'slim': slim}" *ngIf="title">{{title}}</h1>
+	<h2 class="app-gray-700 mat-h1 empty-container-title" [ngClass]="{'slim': slim}" *ngIf="subTitle">{{subTitle}}</h2>
+</div>
+<div class="full-width text-center" *ngIf="actionIcon || actionLabel || action">
+	<button *ngIf="actionIcon || actionLabel" mat-stroked-button color="primary" class="empty-container-action" (click)="actionClicked()">
+		<app-icon *ngIf="actionIcon" [icon]="actionIcon"></app-icon>
+		{{actionLabel}}
+	</button>
+  <ng-content select="app-empty-container-action, [app-empty-container-action], appEmptyContainerAction, [appEmptyContainerAction]"></ng-content>
+</div>
