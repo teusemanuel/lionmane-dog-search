@@ -1,0 +1,194 @@
+// Import theming functions
+@import '@angular/material/theming';
+
+.app-primary-color {
+  color: mat-color($lmds-primary);
+}
+
+.app-accent-color {
+  color: mat-color($lmds-accent);
+}
+
+.app-warn-color {
+  color: mat-color($lmds-warn);
+}
+
+.app-primary-background {
+  background: mat-color($lmds-primary);
+  color: mat-color($lmds-primary, default-contrast);
+}
+
+.app-accent-background {
+  background: mat-color($lmds-accent);
+  color: mat-color($lmds-accent, default-contrast);
+}
+
+.app-warn-background {
+  background: mat-color($lmds-warn);
+  color: mat-color($lmds-warn, default-contrast);
+}
+
+.app-light-text-color {
+  color: rgba(0, 0, 0, 0.54);
+}
+
+.app-light-invese-text-color {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.app-load-image-skeleton {
+  animation: progress 2s ease-in-out infinite;
+  background: hsl(0, 0%, 89%) no-repeat;
+  background-image: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0));
+  background-size: 200px 100%;
+  border-radius: 4px;
+  width: 100%;
+}
+
+.progress-spinner-overlay-backdrop {
+  background: #e3e3e3 !important;
+}
+
+mat-form-field {
+  &.rounded {
+    .mat-form-field-outline-start {
+      border-radius: 28px 0 0 28px !important;
+      min-width: 28px !important;
+    }
+    .mat-form-field-outline-end {
+      border-radius: 0 28px 28px 0 !important;
+    }
+    .mat-form-field-infix {
+      padding: 0.8em 0 0.8em 0;
+    }
+  }
+
+  mat-icon {
+    color: rgba(0, 0, 0, 0.54);
+  }
+
+  &.mat-focused {
+    &.mat-primary {
+      mat-icon {
+        color: mat-color($lmds-primary);
+      }
+    }
+    &.mat-accent {
+      mat-icon {
+        color: mat-color($lmds-accent);
+      }
+    }
+    &.mat-warn {
+      mat-icon {
+        color: mat-color($lmds-warn);
+      }
+    }
+  }
+
+  &.mat-form-field-invalid,
+  &.mat-focused.mat-form-field-invalid {
+    mat-icon {
+      color: mat-color($lmds-warn);
+    }
+
+    mat-checkbox {
+      .mat-checkbox-label,
+      .mat-checkbox-frame {
+        color: mat-color($lmds-warn);
+        border-color: mat-color($lmds-warn);
+      }
+    }
+  }
+
+  &.mat-form-field-disabled {
+    mat-icon {
+      color: rgba(0, 0, 0, 0.38);
+    }
+  }
+
+  mat-icon[matprefix],
+  mat-icon[matPrefix] {
+    margin-right: 8px;
+  }
+
+  mat-icon[matsuffix],
+  mat-icon[matSuffix] {
+    margin-left: 8px;
+  }
+}
+
+input[type='number'] {
+  text-align: end;
+}
+
+.text-center {
+  text-align: center;
+}
+.text-right {
+  text-align: end;
+}
+.text-justify {
+  text-align: justify;
+}
+
+.text-cap {
+  text-transform: capitalize;
+}
+
+.text-no-margin {
+  margin: 0 !important;
+}
+
+.text-dotted {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.click {
+  cursor: pointer;
+}
+
+[hidden],
+.hidden {
+  // hidden any element
+  display: none !important;
+}
+
+.app-gray {
+  &-100 {
+    color: #f8f9fc;
+  }
+
+  &-200 {
+    color: #eaecf4;
+  }
+
+  &-300 {
+    color: #dddfeb;
+  }
+
+  &-400 {
+    color: #d1d3e2;
+  }
+
+  &-500 {
+    color: #b7b9cc;
+  }
+
+  &-600 {
+    color: #858796;
+  }
+
+  &-700 {
+    color: #6e707e;
+  }
+
+  &-800 {
+    color: #5a5c69;
+  }
+
+  &-900 {
+    color: #3a3b45;
+  }
+}

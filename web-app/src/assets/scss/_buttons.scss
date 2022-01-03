@@ -1,0 +1,25 @@
+.mat-button,
+.mat-button-base {
+  &.rounded {
+    border-radius: 48px;
+    &-large {
+      border-radius: 48px;
+      padding: 0 2.5rem;
+    }
+  }
+
+  mat-icon[matprefix],
+  mat-icon[matPrefix] {
+    margin-right: 8px;
+  }
+
+  mat-icon[matsuffix],
+  mat-icon[matSuffix] {
+    margin-left: 8px;
+  }
+}
+
+button.mat-button-base.rounded,
+button.mat-button-base.rounded-large {
+  min-height: 45px;
+}
