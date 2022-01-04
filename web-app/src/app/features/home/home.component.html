@@ -21,7 +21,6 @@
 
 <ng-template #skeletonDetails>
 	<app-skeleton fieldMedium></app-skeleton>
-	<app-skeleton fieldSmall></app-skeleton>
 </ng-template>
 
 <ng-template #skeletonGallery>
@@ -36,10 +35,11 @@
 					<img [src]="avatar"/>
 				</div>
 			</ng-container>
-			<div class="details" fxLayout="column" fxFlex fxFlex.gt-md="400px" fxLayoutGap="8px">
-				<p class="title mat-h3">{{breed.name}} <span *ngIf="breed.subBreed">- {{breed.subBreed}}</span></p>
+			<div class="details" fxLayout="column" fxFlex fxFlex.gt-md="400px" fxLayoutGap="0px">
+				<div class="title mat-headline app-gray-900">{{breed.name}}</div>
+				<div class="subtitle mat-h4 app-gray-700" *ngIf="breed.subBreed">{{breed.subBreed}}</div>
 				<ng-container *ngIf="breed.details | async as details; else skeletonDetails">
-					<p>{{details}}</p>
+					<div class="app-gray-900">{{details}}</div>
 				</ng-container>
 			</div>
 		</div>

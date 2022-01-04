@@ -1,5 +1,5 @@
 :host {
-  padding: 0 16px;
+  padding: 0 16px 16px;
   display: block;
   .avatar {
     width: 80px;
@@ -16,7 +16,8 @@
   }
   .details {
     margin-left: 16px;
-    .title {
+    .title,
+    .subtitle {
       text-transform: capitalize;
     }
   }
