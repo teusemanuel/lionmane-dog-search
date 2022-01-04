@@ -1,27 +1,14 @@
 import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, HostBinding, Input } from '@angular/core';
 
 @Component({
   selector: 'app-skeleton',
   templateUrl: './skeleton.component.html',
   styleUrls: ['./skeleton.component.scss'],
 })
-export class SkeletonComponent implements OnInit {
+export class SkeletonComponent {
   @Input()
-  count = 1;
-
-  @Input() get theme(): { [klass: string]: string } {
-    return this.styles;
-  }
-  set theme(value: { [klass: string]: string }) {
-    this.styles = value;
-  }
-
-  styles: { [klass: string]: any } = {};
-
-  items: Array<number> = [];
-
-  @Input()
+  @HostBinding('class.circle')
   public get circle(): BooleanInput {
     return this.circleValue;
   }
@@ -30,6 +17,7 @@ export class SkeletonComponent implements OnInit {
   }
   private circleValue: BooleanInput = false;
 
+  @HostBinding('class.square')
   @Input()
   public get squareBorder(): BooleanInput {
     return this.squareBorderValue;
@@ -39,6 +27,7 @@ export class SkeletonComponent implements OnInit {
   }
   private squareBorderValue: BooleanInput = false;
 
+  @HostBinding('class.circle-small')
   @Input()
   public get circleSmall(): BooleanInput {
     return this.circleSmallValue;
@@ -48,6 +37,7 @@ export class SkeletonComponent implements OnInit {
   }
   private circleSmallValue: BooleanInput = false;
 
+  @HostBinding('class.xsmall')
   @Input()
   public get fieldXSmall(): BooleanInput {
     return this.fieldXSmallValue;
@@ -57,6 +47,7 @@ export class SkeletonComponent implements OnInit {
   }
   private fieldXSmallValue: BooleanInput = false;
 
+  @HostBinding('class.small')
   @Input()
   public get fieldSmall(): BooleanInput {
     return this.fieldSmallValue;
@@ -66,6 +57,7 @@ export class SkeletonComponent implements OnInit {
   }
   private fieldSmallValue: BooleanInput = false;
 
+  @HostBinding('class.medium')
   @Input()
   public get fieldMedium(): BooleanInput {
     return this.fieldMediumValue;
@@ -75,6 +67,7 @@ export class SkeletonComponent implements OnInit {
   }
   private fieldMediumValue: BooleanInput = false;
 
+  @HostBinding('class.large')
   @Input()
   public get fieldLarge(): BooleanInput {
     return this.fieldLargeValue;
@@ -85,9 +78,4 @@ export class SkeletonComponent implements OnInit {
   private fieldLargeValue: BooleanInput = false;
 
   constructor() {}
-
-  ngOnInit(): void {
-    this.styles = this.theme || {};
-    this.items = Array.from({ length: this.count }, (_, index) => index);
-  }
 }

@@ -1,1 +1,36 @@
-<router-outlet></router-outlet>
+<mat-sidenav-container class="sidenav-container">
+	<mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+		[mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
+		<div class="sidenav-left-container">
+			<div class="header logo click" (click)="menuClick()" routerLink="/">
+				<mat-icon inline color="primary">pets</mat-icon>
+			</div>
+			<div class="list-container">
+				<mat-nav-list class="list-itens">
+					<a mat-list-item (click)="menuClick()" routerLink="home" routerLinkActive="selected">
+						<mat-icon mat-list-icon>stars</mat-icon>
+						<div mat-line>Home</div>
+					</a>
+					<a mat-list-item (click)="menuClick()" routerLink="dog-breeds" routerLinkActive="selected">
+						<mat-icon mat-list-icon svgIcon="dog-solid"></mat-icon>
+						<span mat-line>Dog Breeds</span>
+					</a>
+				</mat-nav-list>
+				<div class="footer">
+					<mat-divider></mat-divider>
+					<p class="version mat-h5">Version: {{version.tag ?? '0.0.1'}}</p>
+				</div>
+			</div>
+		</div>
+	</mat-sidenav>
+	<mat-sidenav-content>
+		<mat-toolbar color="transparent">
+			<button color="primary" type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
+				*ngIf="isHandset$ | async">
+				<mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+			</button>
+			<span class="app-primary-color">{{title}}</span>
+		</mat-toolbar>
+		<router-outlet></router-outlet>
+	</mat-sidenav-content>
+</mat-sidenav-container>

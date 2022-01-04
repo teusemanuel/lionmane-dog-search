@@ -1,5 +1,6 @@
 import { HttpEvent, HttpHandler, HttpInterceptor, HttpParams, HttpRequest } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
+import { APP_BASE_HREF } from '@app/core/http/base-href';
 import { environment } from '@src/environments/environment';
 import { Observable } from 'rxjs';
 
@@ -7,7 +8,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class ConfigApiInterceptor implements HttpInterceptor {
-  constructor() {}
+  constructor(@Inject(APP_BASE_HREF) private baseHref: string) {}
 
   intercept<T>(req: HttpRequest<T>, next: HttpHandler): Observable<HttpEvent<T>> {
     let url = req.url;
@@ -29,6 +30,8 @@ export class ConfigApiInterceptor implements HttpInterceptor {
         withCredentials: false,
       });
     }
+
+    req = req.clone({ url, headers: req.headers.set('base-href', this.baseHref) });
 
     if (req.method === 'GET' && req.params) {
       let params = this.checkIsHttpParams(req.params) ? req.params : new HttpParams({ fromObject: req.params });

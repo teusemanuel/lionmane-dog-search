@@ -5,20 +5,6 @@
     {
       "type": "npm",
       "script": "start",
-      "isBackground": true,
-      "problemMatcher": {
-        "owner": "typescript",
-        "pattern": "$tsc",
-        "background": {
-          "activeOnStart": true,
-          "beginsPattern": {
-            "regexp": "(.*?)"
-          },
-          "endsPattern": {
-            "regexp": "bundle generation complete"
-          }
-        }
-      },
       "label": "npm: start",
       "detail": "npm run lint && npm run version-generate && ng serve --host 0.0.0.0 --port 4200",
       "group": {
@@ -29,19 +15,9 @@
     {
       "type": "npm",
       "script": "test",
-      "isBackground": true,
-      "problemMatcher": {
-        "owner": "typescript",
-        "pattern": "$tsc",
-        "background": {
-          "activeOnStart": true,
-          "beginsPattern": {
-            "regexp": "(.*?)"
-          },
-          "endsPattern": {
-            "regexp": "bundle generation complete"
-          }
-        }
+      "group": {
+        "kind": "build",
+        "isDefault": true
       }
     }
   ]

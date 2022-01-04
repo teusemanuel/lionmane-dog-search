@@ -38,7 +38,7 @@
 
 .app-load-image-skeleton {
   animation: progress 2s ease-in-out infinite;
-  background: hsl(0, 0%, 89%) no-repeat;
+  background: #d1d1d1 no-repeat;
   background-image: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0));
   background-size: 200px 100%;
   border-radius: 4px;

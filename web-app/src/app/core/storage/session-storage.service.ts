@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { StorageService } from '@app/core/storage/storage.service';
 import { BehaviorSubject, Subject } from 'rxjs';
+import { FavoriteBreed } from '../models/favorite-breed';
 
 @Injectable({
   providedIn: 'root',
@@ -22,11 +23,11 @@ export class SessionStorageService {
 
   // FUNCTIONS
   /////////////////
-  setFavorite(favorite: string): void {
+  setFavorite(favorite: FavoriteBreed): void {
     this.storageService.setFavorite(favorite);
   }
 
-  getFavotite(): string | undefined {
+  getFavotite(): FavoriteBreed | undefined {
     if (!this.hasFavorite) {
       return;
     }

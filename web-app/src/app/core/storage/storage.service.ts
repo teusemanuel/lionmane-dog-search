@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
 import { StorageAlternativeService } from '@app/core/storage/storage-alternative.service';
+import { FavoriteBreed } from '../models/favorite-breed';
 
 @Injectable({
   providedIn: 'root',
 })
 export class StorageService {
-  static readonly STORAGE_FAVORITE = 'STORAGE_FAVORITE';
+  static readonly STORAGE_FAVORITE_NAME = 'STORAGE_FAVORITE_NAME';
+  static readonly STORAGE_FAVORITE_SUB_BREED = 'STORAGE_FAVORITE_SUB_BREED';
 
   private storage: Storage | StorageAlternativeService = localStorage;
 
@@ -17,24 +19,30 @@ export class StorageService {
 
   // FUNCTIONS FOR USER
   /////////////////
-  setFavorite(favorite: any): void {
+  setFavorite(favorite: FavoriteBreed): void {
     if (!this.isLocalStorageSupported()) {
       return;
     }
 
-    this.storage.setItem(StorageService.STORAGE_FAVORITE, favorite);
+    this.storage.setItem(StorageService.STORAGE_FAVORITE_NAME, favorite.name);
+    if (favorite.subBreed) {
+      this.storage.setItem(StorageService.STORAGE_FAVORITE_SUB_BREED, favorite.subBreed);
+    }
   }
 
-  getFavorite(): any {
-    const favorite = this.storage.getItem(StorageService.STORAGE_FAVORITE);
+  getFavorite(): FavoriteBreed | undefined {
+    const name = this.storage.getItem(StorageService.STORAGE_FAVORITE_NAME);
+    const subBreed = this.storage.getItem(StorageService.STORAGE_FAVORITE_SUB_BREED);
+    if (!name && !subBreed) {
+      return undefined;
+    }
 
-    return favorite;
+    return { name, subBreed };
   }
 
-  clearFavorite(): any {
-    const favorite = this.storage.removeItem(StorageService.STORAGE_FAVORITE);
-
-    return favorite;
+  clearFavorite(): void {
+    this.storage.removeItem(StorageService.STORAGE_FAVORITE_NAME);
+    this.storage.removeItem(StorageService.STORAGE_FAVORITE_SUB_BREED);
   }
 
   getItem(key: string): string {
@@ -47,7 +55,7 @@ export class StorageService {
       this.storage.setItem(testKey, '1');
       this.storage.removeItem(testKey);
       return true;
-    } catch (error) { }
+    } catch (error) {}
 
     return false;
   }
