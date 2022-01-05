@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders, HttpParams, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Deserialize } from 'cerialize';
+import { ObjectMapper } from 'jackson-js';
 import { Observable, tap } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Outcome } from '../models/core/outcome';
@@ -58,7 +58,9 @@ export class AppHttpClient {
       map((event) => {
         if (event instanceof HttpResponse) {
           if (options && this.checkIsRequestObjectOptions(options)) {
-            return Deserialize(event.body, options.responseRef);
+            const objectMapper = new ObjectMapper();
+            return objectMapper.parse<T>(event.body, { mainCreator: () => [options.responseRef] });
+            // return Deserialize(event.body, options.responseRef);
           }
         }
         return undefined;
@@ -231,6 +233,6 @@ export class AppHttpClient {
   }
 
   private checkIsRequestObjectOptions<R>(object?: any): object is IRequestObjectOptions<R> {
-    return 'responseObjectType' in object;
+    return 'responseRef' in object;
   }
 }

@@ -23,6 +23,7 @@ export class AppErrorHandler implements ErrorHandler {
             this.appErrorHandlerService.forbidden();
             break;
           case StatusCodes.BAD_REQUEST:
+          case StatusCodes.NOT_FOUND:
           case StatusCodes.INTERNAL_SERVER_ERROR:
             this.appErrorHandlerService.serverError(error);
             break;

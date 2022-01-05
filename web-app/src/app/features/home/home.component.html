@@ -1,1 +1,54 @@
-<p>home works!</p>
+<ng-template #skeleton>
+	<div class="skeleton" fxLayout="column">
+		<div fxLayout="row">
+			<ng-container [ngTemplateOutlet]="skeletonAvatar"></ng-container>
+			<div class="details" fxLayout="column" fxFlex fxFlex.gt-md="400px" fxLayoutGap="8px">
+				<app-skeleton field></app-skeleton>
+				<app-skeleton fieldMedium></app-skeleton>
+				<app-skeleton fieldSmall></app-skeleton>
+			</div>
+		</div>
+		<div class="gallery-title mat-h1">Gallery</div>
+		<div gdColumns="repeat(auto-fill, minmax(200px, 1fr))" fxLayoutAlign="space-around start" gdGap="16px" >
+			<ng-container [ngTemplateOutlet]="skeletonGallery"></ng-container>
+		</div>
+	</div>
+</ng-template>
+
+<ng-template #skeletonAvatar>
+	<app-skeleton class="avatar" circle></app-skeleton>
+</ng-template>
+
+<ng-template #skeletonDetails>
+	<app-skeleton fieldMedium></app-skeleton>
+</ng-template>
+
+<ng-template #skeletonGallery>
+	<app-skeleton *ngFor="let item of gallerySkeleton" class="gallery-skeleton" squareBorder></app-skeleton>
+</ng-template>
+
+<ng-container *ngIf="breed$ | async as breed; else skeleton">
+	<div class="breed" fxLayout="column">
+		<div fxLayout="row">
+			<ng-container *ngIf="breed.picture | async as avatar; else skeletonAvatar">
+				<div class="avatar">
+					<img [src]="avatar"/>
+				</div>
+			</ng-container>
+			<div class="details" fxLayout="column" fxFlex fxFlex.gt-md="400px" fxLayoutGap="0px">
+				<div class="title mat-headline app-gray-900">{{breed.name}}</div>
+				<div class="subtitle mat-h4 app-gray-700" *ngIf="breed.subBreed">{{breed.subBreed}}</div>
+				<ng-container *ngIf="breed.details | async as details; else skeletonDetails">
+					<div class="app-gray-900">{{details}}</div>
+				</ng-container>
+			</div>
+		</div>
+		<div class="gallery-title mat-h1">Gallery</div>
+		<div gdColumns.lt-sm="repeat(auto-fill, minmax(100%, 1fr))" gdColumns="repeat(auto-fill, minmax(200px, 1fr))" fxLayoutAlign="space-around start" gdGap="16px" >
+			<ng-container *ngIf="breed.pictures | async as pictures; else skeletonGallery">
+				<img class="gallery-responsive" *ngFor="let picture of pictures" draggable="false" showSkeletonOnLoad [src]="picture"/>
+			</ng-container>
+		</div>
+	</div>
+
+</ng-container>

@@ -1,21 +1,20 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, PlatformLocation } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { ErrorHandler, NgModule, Optional, SkipSelf } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import {
-  MatSnackBarModule,
-  MAT_SNACK_BAR_DEFAULT_OPTIONS,
-} from '@angular/material/snack-bar';
+import { MatSnackBarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
 import { HammerModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ProgressSpinnerComponent } from './componens/progress-spinner/progress-spinner.component';
 import { AppErrorHandler } from './error/app-error-handler';
 import { AppErrorHandlerService } from './error/app-error-handler.service';
 import { httpInterceptorProviders } from './http';
+import { APP_BASE_HREF } from './http/base-href';
 import { SessionStorageService } from './storage/session-storage.service';
+import { getBaseHref } from './utils/base-href-utils';
 
 @NgModule({
   declarations: [ProgressSpinnerComponent],
@@ -34,6 +33,7 @@ import { SessionStorageService } from './storage/session-storage.service';
     SessionStorageService,
     httpInterceptorProviders,
     { provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { duration: 4000 } },
+    { provide: APP_BASE_HREF, useFactory: getBaseHref, deps: [PlatformLocation] },
     {
       provide: ErrorHandler,
       useClass: AppErrorHandler,

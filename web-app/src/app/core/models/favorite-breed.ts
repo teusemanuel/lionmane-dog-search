@@ -1,4 +1,4 @@
-export class PreferedBreed {
+export class FavoriteBreed {
   name!: string;
   subBreed?: string;
 }

@@ -2,7 +2,7 @@ import { PlatformLocation } from '@angular/common';
 import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '@src/environments/environment';
-import { Serialize } from 'cerialize';
+import { ObjectMapper } from 'jackson-js';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -14,7 +14,8 @@ export class SerializeInterceptor implements HttpInterceptor {
   intercept<T>(req: HttpRequest<T>, next: HttpHandler): Observable<HttpEvent<T>> {
     const isJsonBody = req.headers.get('Content-Type') === 'application/json';
     if (req.body && isJsonBody) {
-      req = req.clone({ body: Serialize(req.body) });
+      const objectMapper = new ObjectMapper();
+      req = req.clone<any>({ body: objectMapper.stringify(req.body) });
     }
 
     const api = environment.api;

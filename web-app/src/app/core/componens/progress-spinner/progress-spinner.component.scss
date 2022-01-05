@@ -21,10 +21,22 @@
 
     .logo {
       margin: auto auto 0 auto;
+      width: 100%;
     }
 
     mat-spinner {
-      margin: -50px auto auto;
+      margin: -28px auto auto;
+    }
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .app-loading .container {
+    .logo {
+      width: auto;
+    }
+    mat-spinner {
+      margin: -70px auto auto;
     }
   }
 }

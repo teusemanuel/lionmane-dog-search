@@ -1,88 +1,85 @@
-.loader {
-	box-sizing: border-box;
-	/**
+:host {
+  box-sizing: border-box;
+  /**
 	* `overflow` and `position` are required steps to make sure
 	* the component respects the specified dimensions
 	* given via `theme` object @Input attribute
 	*/
-	overflow: hidden;
-	position: relative;
+  overflow: hidden;
+  position: relative;
 
-	animation: progress 2s ease-in-out infinite;
-	background: hsl(0,0%,89%) no-repeat;
-	background-image: linear-gradient(90deg,
-			rgba(255, 255, 255, 0),
-			rgba(255, 255, 255, 0.6),
-			rgba(255, 255, 255, 0));
-	background-size: 200px 100%;
-	border-radius: 999px;
-	width: 100%;
-	height: 20px;
-	display: inline-block;
+  animation: progress 2s ease-in-out infinite;
+  background: #d1d1d1 no-repeat;
+  background-image: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0));
+  background-size: 200px 100%;
+  border-radius: 999px;
+  width: 100%;
+  height: 20px;
+  display: inline-block;
 
-	&:after,
-	&:before {
-		box-sizing: border-box;
-	}
+  &:after,
+  &:before {
+    box-sizing: border-box;
+  }
 
-	&.square {
-		border-radius: 4px;
-	}
-	&.circle {
-		width: 40px;
-		height: 40px;
-		border-radius: 50%;
+  &.square {
+    border-radius: 4px;
+  }
+  &.circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
 
-		&-small {
-			width: 24px;
-			height: 24px;
-			border-radius: 50%;
-		}
-	}
+    &-small {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+    }
+  }
 
-	&.xsmall {
-		width: 25%;
-	}
+  &.xsmall {
+    width: 25%;
+  }
 
-	&.small {
-		width: 45%;
-	}
+  &.small {
+    width: 45%;
+  }
 
-	&.medium {
-		width: 60%;
-	}
+  &.medium {
+    width: 60%;
+  }
 
-	&.large {
-		width: 85%;
-	}
+  &.large {
+    width: 85%;
+  }
 }
 
 @media only screen and (min-width: 960px) {
-	.loader {
-		&.xsmall {
-			width: 15%;
-		}
+  :host {
+    &.xsmall {
+      width: 15%;
+    }
 
-		&.small {
-			width: 35%;
-		}
+    &.small {
+      width: 35%;
+    }
 
-		&.medium {
-			width: 50%;
-		}
+    &.medium {
+      width: 50%;
+    }
 
-		&.large {
-			width: 75%;
-		}
-	}
+    &.large {
+      width: 75%;
+    }
+  }
 }
 
 @keyframes progress {
-	0% {
-		background-position: -200px 0;
-	}
+  0% {
+    background-position: -200px 0;
+  }
 
-	100% {
-		background-position: calc(200px + 100%) 0;
-	}
+  100% {
+    background-position: calc(200px + 100%) 0;
+  }
 }
