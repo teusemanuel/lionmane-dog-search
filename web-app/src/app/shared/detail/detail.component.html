@@ -1,0 +1,14 @@
+<div fxLayout="column">
+  <div class="detail" [class.slim]="slim" fxLayout="row" fxLayoutAlign="start center">
+    <ng-content select="app-detail-avatar, [app-detail-avatar], appDetailAvatar, [appDetailAvatar]"></ng-content>
+    <div fxFlex fxLayout="column" fxLayoutAlign="center start" [class.overflow-hidden]="isOverflowHidden">
+      <ng-content select="app-detail-title, [app-detail-title], appDetailTitle, [appDetailTitle]"></ng-content>
+      <ng-content select="app-detail-description, [app-detail-description], appDetailDescription, [appDetailDescription]"></ng-content>
+    </div>
+  </div>
+  <div>
+    <div fxFlex [fxFlexOffset]="avatar ? '72px' : 0">
+      <ng-content select="mat-divider"></ng-content>
+    </div>
+  </div>
+</div>

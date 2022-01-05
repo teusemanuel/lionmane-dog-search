@@ -1,0 +1,68 @@
+<ng-template #skeleton>
+	<div class="breeds-container" gdGap="1rem" gdColumns="100%" gdColumns.gt-xs="repeat(auto-fill, minmax(400px, 1fr))">
+
+		<ng-container *ngFor="let item of listSkeleton; let i = index; trackBy: trackBySkeleton">
+			<app-skeleton class="breeds-item-skeleton" squareBorder></app-skeleton>
+		</ng-container>
+	</div>
+</ng-template>
+
+<ng-template #skeletonAvatar>
+	<app-skeleton class="avatar" circle></app-skeleton>
+</ng-template>
+
+<ng-template #empty>
+	<app-empty-container [topIcon]="{icon: 'find_in_page' }" app-title="No Breeds Found!"></app-empty-container>
+</ng-template>
+
+<form [formGroup]="form">
+
+	<div class="search-container" fxLayout="row" fxLayoutAlign="space-between center">
+		<mat-form-field appearance="outline" class="rounded search" fxFlex fxFlex.gt-md="40">
+			<mat-label>Search Breeds</mat-label>
+			<mat-icon matPrefix>search</mat-icon>
+			<input matInput placeholder="What breed are you looking for?" name="serviço" formControlName="search">
+			<button *ngIf="form.value?.search?.length" matSuffix mat-icon-button aria-label="Clear"
+				(click)="form.reset()">
+				<mat-icon>close</mat-icon>
+			</button>
+		</mat-form-field>
+
+	</div>
+
+</form>
+
+<ng-container *ngIf="breeds$ | async as breeds; else skeleton">
+	<ng-container *ngIf="breeds | filterBreeds: form.value.search as breedsFilter; else empty">
+
+		<div class="breeds-container" gdGap="1rem" gdColumns="100%"
+			gdColumns.gt-xs="repeat(auto-fill, minmax(400px, 1fr))">
+
+			<ng-container *ngFor="let item of breedsFilter; let i = index; trackBy: trackByBreed">
+				<div fxLayout="column" [@fadeOutOnLeave] class="breeds-item click pb-3 pt-2 px-2" matRipple
+					matRippleColor="#3581C17a" (click)="selectBreed.next(item)">
+					<div fxLayout="row">
+						<app-detail fxFlex slim>
+							<div app-detail-avatar class="logo-avatar">
+								<ng-container *ngIf="item.picture | async as avatar; else skeletonAvatar">
+									<div class="avatar">
+										<img [src]="avatar" />
+									</div>
+								</ng-container>
+							</div>
+							<span app-detail-description class="text-cap"><span
+									class="mat-h1">{{item.name}}</span></span>
+						</app-detail>
+						<mat-icon fxFlex="initial"
+							[class]="favorite?.name === item?.name ? 'app-accent-color' : 'app-gray-300'">
+							{{favorite?.name === item?.name ? 'star' : 'star_border'}}</mat-icon>
+
+					</div>
+
+				</div>
+			</ng-container>
+		</div>
+
+	</ng-container>
+
+</ng-container>

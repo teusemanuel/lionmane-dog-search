@@ -1,0 +1,19 @@
+snack-bar-container {
+  &.mat-snack-bar-container {
+    &.app-error {
+      background-color: #e53935;
+    }
+    &.app-warning {
+      background-color: #fb8c00;
+    }
+    &.app-success {
+      background-color: #43a047;
+    }
+    &.app-info {
+      background-color: #1e88e5;
+    }
+  }
+  .mat-simple-snackbar-action {
+    color: #ffffff;
+  }
+}

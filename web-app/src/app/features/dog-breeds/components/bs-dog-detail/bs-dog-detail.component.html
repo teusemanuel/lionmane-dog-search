@@ -1,0 +1,60 @@
+<ng-template #skeletonAvatar>
+	<app-skeleton class="avatar-container" circle></app-skeleton>
+</ng-template>
+
+<ng-template #skeletonDetails>
+	<app-skeleton fieldMedium></app-skeleton>
+</ng-template>
+
+<ng-template #skeletonGallery>
+	<app-skeleton *ngFor="let item of gallerySkeleton" class="gallery-skeleton" squareBorder></app-skeleton>
+</ng-template>
+
+<div fxLayout="column">
+
+
+	<div class="breed" fxLayout="column">
+		<div fxLayout="row" class="header-info">
+			<ng-container *ngIf="breed.picture | async as avatar; else skeletonAvatar">
+				<div class="avatar">
+					<div class="avatar-container">
+						<img [src]="avatar" />
+					</div>
+					<div *ngIf="isFavorite" [@bounceStarCircle] class="favorite-icon">
+						<mat-icon matPrefix [@bounceStar] [@bounceStarRotate]="{ params: { duration: 700, degrees: 720 } }" color="accent" inline>star</mat-icon>
+					</div>
+				</div>
+			</ng-container>
+			<div class="details" fxLayout="column" fxFlex fxLayoutGap="0px">
+				<div class="title mat-headline app-gray-900">{{breed.name}}</div>
+				<div class="subtitle mat-h4 app-gray-700" *ngIf="breed.subBreed">{{breed.subBreed}}</div>
+				<ng-container *ngIf="breed.details | async as details; else skeletonDetails">
+					<div class="app-gray-900">
+						<span *ngIf="details.name">{{details.name}}</span>
+						<span *ngIf="details.info">
+							<span *ngIf="details.name">- </span>
+							{{details.info}}
+						</span>
+					</div>
+				</ng-container>
+			</div>
+			<button mat-icon-button color="primary" class="close" (click)="close()">
+				<mat-icon>close</mat-icon>
+			</button>
+		</div>
+		<div class="gallery-title mat-h1">Gallery</div>
+		<div class="gallery" gdColumns.lt-sm="repeat(auto-fill, minmax(100%, 1fr))"
+			gdColumns="repeat(auto-fill, minmax(200px, 1fr))" fxLayoutAlign="space-around start" gdGap="16px">
+			<ng-container *ngIf="breed.pictures | async as pictures; else skeletonGallery">
+				<img class="gallery-responsive" *ngFor="let picture of pictures" draggable="false" showSkeletonOnLoad
+					[src]="picture" />
+			</ng-container>
+		</div>
+	</div>
+
+	<button *ngIf="!isFavorite" mat-raised-button class="rounded action" color="primary" (click)="setFavorite()">
+		<mat-icon matPrefix color="accent">star</mat-icon>
+		Select as Favorite
+	</button>
+
+</div>

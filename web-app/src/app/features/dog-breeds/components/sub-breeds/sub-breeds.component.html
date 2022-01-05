@@ -1,0 +1,57 @@
+<ng-template #skeleton>
+	<div class="breeds-container" gdGap="1rem" gdColumns="100%" gdColumns.gt-xs="repeat(auto-fill, minmax(400px, 1fr))">
+
+		<ng-container *ngFor="let item of listSkeleton; let i = index; trackBy: trackBySkeleton">
+			<app-skeleton class="breeds-item-skeleton" squareBorder></app-skeleton>
+		</ng-container>
+	</div>
+</ng-template>
+
+<ng-template #skeletonAvatar>
+	<app-skeleton class="avatar" circle></app-skeleton>
+</ng-template>
+
+<ng-template #cardItem let-breed="breed" let-enabled="enabled">
+	<div fxLayout="column" [@fadeOutOnLeave] class="breeds-item click pb-3 pt-2 px-2" matRipple
+		matRippleColor="#3581C17a" (click)="!enabled ? null : selectSubBreed.next(breed.name)">
+		<div fxLayout="row">
+			<app-detail fxFlex slim>
+				<div app-detail-avatar class="logo-avatar">
+					<ng-container *ngIf="breed?.picture | async as avatar; else skeletonAvatar">
+						<div class="avatar">
+							<img [src]="avatar" />
+						</div>
+					</ng-container>
+				</div>
+				<span app-detail-description class="text-cap"><span class="mat-h1">{{breed?.name}}</span></span>
+			</app-detail>
+			<mat-icon *ngIf="enabled" fxFlex="initial" [class]="favorite?.name === mainBreed?.name && favorite?.subBreed === breed?.name ? 'app-accent-color' : 'app-gray-300'">
+				{{favorite?.name === mainBreed?.name && favorite?.subBreed === breed?.name ? 'star' : 'star_border'}}
+			</mat-icon>
+
+		</div>
+
+	</div>
+</ng-template>
+
+<div class="mb-4" fxLayout="row" fxLayoutGap="8px" fxLayoutGap.gt-md="16px">
+	<div fxFlex fxFlex.gt-md="400px">
+		<ng-container [ngTemplateOutlet]="cardItem" [ngTemplateOutletContext]="{breed: mainBreed, enabled: false}">
+		</ng-container>
+	</div>
+	<div fxFlexAlign="center">
+		<button mat-stroked-button class="rounded" color="primary" (click)="clearSelection.next()">
+			<mat-icon matPrefix>clear</mat-icon> <span>Clean</span><span fxShow fxHide.lt-md> Selection</span>
+		</button>
+	</div>
+</div>
+
+<div class="mb-2 mat-h1 app-gray-800">Sub Breeds</div>
+
+<div class="breeds-container" gdGap="1rem" gdColumns="100%" gdColumns.gt-xs="repeat(auto-fill, minmax(400px, 1fr))">
+
+	<ng-container *ngFor="let item of subBreedList; let i = index; trackBy: trackByBreed">
+		<ng-container [ngTemplateOutlet]="cardItem" [ngTemplateOutletContext]="{breed: item, enabled: true}">
+		</ng-container>
+	</ng-container>
+</div>

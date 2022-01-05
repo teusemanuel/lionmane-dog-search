@@ -1,0 +1,10 @@
+<ng-template #fistLoad>
+	<div class="app-loading">
+		<div class="container">
+			<img class="logo" src="/assets/img/dog-app-loading.gif" />
+			<mat-spinner strokeWidth="4.5" diameter="60"></mat-spinner>
+		</div>
+	</div>
+</ng-template>
+
+<mat-spinner *ngIf="!isFirstloading; else fistLoad"></mat-spinner>

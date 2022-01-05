@@ -1,0 +1,35 @@
+@use '@angular/material' as mat;
+@use 'src/assets/scss/attributes' as theme;
+
+.detail {
+  padding: 8px 0;
+  &.slim {
+    padding: 0;
+  }
+  .overflow-hidden {
+    overflow: hidden;
+
+    .detail-description {
+      display: flex;
+      min-width: 0;
+      width: 100%;
+    }
+  }
+}
+
+.detail-title {
+  color: #858796;
+  @include mat.typography-level(theme.$app-typography, 'caption');
+}
+.detail-description {
+  color: #5a5c69;
+  @include mat.typography-level(theme.$app-typography, 'subheading-1');
+}
+
+.detail-avatar {
+  margin: auto 32px auto 16px;
+  width: 24px;
+  height: 24px;
+  min-width: 24px;
+  min-height: 24px;
+}

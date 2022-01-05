@@ -1,0 +1,17 @@
+version: '3.3'
+services:
+  web:
+    container_name: lm_web  # Container name
+    image: lion_mane/lm_web-web:1.0.0
+    build:
+      context: .
+      target: server
+      dockerfile: ./Dockerfile
+      args:
+        - http_proxy
+        - https_proxy
+        - no_proxy
+    ports:
+      - '4201:443'
+      - '4200:80'
+      - '5858:5858'

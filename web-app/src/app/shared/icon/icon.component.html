@@ -1,0 +1,16 @@
+<ng-template #normalIcon>
+
+	<mat-icon [color]="!ignoreCustomAttributes ? icon?.color : null"
+		[ngClass]="!ignoreCustomAttributes ? (icon?.customClass || '') : ''"
+		[inline]="inline">{{icon?.icon}}</mat-icon>
+
+</ng-template>
+<ng-template #svgIcon>
+
+	<mat-icon [color]="!ignoreCustomAttributes ? icon?.color : null"
+		[ngClass]="!ignoreCustomAttributes ? (icon?.customClass || '') : ''"
+		[svgIcon]="icon?.icon!" [inline]="inline"></mat-icon>
+
+</ng-template>
+
+<ng-container *ngIf="icon?.isSVG; then svgIcon; else normalIcon"></ng-container>

@@ -9,6 +9,9 @@
         "@schematics/angular:component": {
           "style": "scss"
         },
+        "@schematics/angular:class": {
+          "skipTests": true
+        },
         "@schematics/angular:application": {
           "strict": true
         }
@@ -70,6 +73,9 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "proxyConfig": "proxy.conf.json"
+          },
           "configurations": {
             "production": {
               "browserTarget": "lionmane-dog-search-web:build:production"
@@ -103,9 +109,21 @@
             ],
             "scripts": []
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
+            ]
+          }
         }
       }
     }
   },
-  "defaultProject": "lionmane-dog-search-web"
+  "defaultProject": "lionmane-dog-search-web",
+  "cli": {
+    "defaultCollection": "@angular-eslint/schematics"
+  }
 }

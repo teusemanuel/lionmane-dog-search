@@ -4,8 +4,14 @@
   "compilerOptions": {
     "outDir": "./out-tsc/spec",
     "types": [
-      "jasmine"
-    ]
+      "jasmine",
+      "node"
+    ],
+    "paths": {
+      "@app/*": ["src/app/*"],
+      "@src/*": ["src/*"],
+      "@env/*": ["src/environments/*"],
+    }
   },
   "files": [
     "src/test.ts",

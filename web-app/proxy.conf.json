@@ -1,0 +1,11 @@
+{
+  "/api": {
+    "target": "https://dog.ceo/api",
+    "secure": false,
+    "changeOrigin": true,
+    "pathRewrite": {
+      "^/api": ""
+    },
+    "logLevel": "debug"
+  }
+}

@@ -1,0 +1,156 @@
+$spacer: 1rem;
+
+.m {
+  &t {
+    &-0 {
+      margin-top: 0;
+    }
+    &-1 {
+      margin-top: ($spacer * 0.25);
+    }
+    &-2 {
+      margin-top: ($spacer * 0.5);
+    }
+    &-3 {
+      margin-top: $spacer;
+    }
+    &-4 {
+      margin-top: ($spacer * 2);
+    }
+    &-5 {
+      margin-top: ($spacer * 3);
+    }
+    &-auto {
+      margin-top: auto;
+    }
+  }
+  &b {
+    &-0 {
+      margin-bottom: 0;
+    }
+    &-1 {
+      margin-bottom: ($spacer * 0.25);
+    }
+    &-2 {
+      margin-bottom: ($spacer * 0.5);
+    }
+    &-3 {
+      margin-bottom: $spacer;
+    }
+    &-4 {
+      margin-bottom: ($spacer * 2);
+    }
+    &-5 {
+      margin-bottom: ($spacer * 3);
+    }
+    &-auto {
+      margin-bottom: auto;
+    }
+  }
+  &l {
+    &-0 {
+      margin-left: 0;
+    }
+    &-1 {
+      margin-left: ($spacer * 0.25);
+    }
+    &-2 {
+      margin-left: ($spacer * 0.5);
+    }
+    &-3 {
+      margin-left: $spacer;
+    }
+    &-4 {
+      margin-left: ($spacer * 2);
+    }
+    &-5 {
+      margin-left: ($spacer * 3);
+    }
+    &-auto {
+      margin-left: auto;
+    }
+  }
+  &r {
+    &-0 {
+      margin-right: 0;
+    }
+    &-1 {
+      margin-right: ($spacer * 0.25);
+    }
+    &-2 {
+      margin-right: ($spacer * 0.5);
+    }
+    &-3 {
+      margin-right: $spacer;
+    }
+    &-4 {
+      margin-right: ($spacer * 2);
+    }
+    &-5 {
+      margin-right: ($spacer * 3);
+    }
+    &-auto {
+      margin-right: auto;
+    }
+  }
+  &x {
+    &-0 {
+      margin-left: 0;
+      margin-right: 0;
+    }
+    &-1 {
+      margin-left: ($spacer * 0.25);
+      margin-right: ($spacer * 0.25);
+    }
+    &-2 {
+      margin-left: ($spacer * 0.5);
+      margin-right: ($spacer * 0.5);
+    }
+    &-3 {
+      margin-left: $spacer;
+      margin-right: $spacer;
+    }
+    &-4 {
+      margin-left: ($spacer * 2);
+      margin-right: ($spacer * 2);
+    }
+    &-5 {
+      margin-left: ($spacer * 3);
+      margin-right: ($spacer * 3);
+    }
+    &-auto {
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+  &y {
+    &-0 {
+      margin-bottom: 0;
+      margin-top: 0;
+    }
+    &-1 {
+      margin-bottom: ($spacer * 0.25);
+      margin-top: ($spacer * 0.25);
+    }
+    &-2 {
+      margin-bottom: ($spacer * 0.5);
+      margin-top: ($spacer * 0.5);
+    }
+    &-3 {
+      margin-bottom: $spacer;
+      margin-top: $spacer;
+    }
+    &-4 {
+      margin-bottom: ($spacer * 2);
+      margin-top: ($spacer * 2);
+    }
+    &-5 {
+      margin-bottom: ($spacer * 3);
+      margin-top: ($spacer * 3);
+    }
+    &-auto {
+      margin-bottom: auto;
+      margin-top: auto;
+    }
+  }
+}

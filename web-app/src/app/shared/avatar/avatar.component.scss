@@ -1,0 +1,54 @@
+@use 'sass:map';
+@use '@angular/material' as mat;
+@use 'src/assets/scss/attributes' as theme;
+
+$color-config: mat.get-color-config(theme.$lmds-theme);
+$primary-palette: map.get($color-config, 'primary');
+$accent-palette: map.get($color-config, 'accent');
+$warn-palette: map.get($color-config, 'warn');
+
+:host {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+
+  &.circle {
+    border-radius: 50% !important;
+  }
+
+  &.square {
+    border-radius: 8px !important;
+  }
+
+  &.primary {
+    background: mat.get-color-from-palette($primary-palette);
+    color: mat.get-color-from-palette($primary-palette, default-contrast);
+  }
+
+  &.primary-gradient {
+    background: linear-gradient(193deg, #451ab7 0%, #5721e5 20%, #7e1dce 100%);
+    color: mat.get-color-from-palette($primary-palette, default-contrast);
+  }
+
+  &.accent {
+    background: mat.get-color-from-palette($accent-palette);
+    color: mat.get-color-from-palette($accent-palette, default-contrast);
+  }
+
+  &.warn {
+    background: mat.get-color-from-palette($warn-palette);
+    color: mat.get-color-from-palette($warn-palette, default-contrast);
+  }
+  &.primary-color {
+    color: mat.get-color-from-palette($primary-palette);
+  }
+
+  &.accent-color {
+    color: mat.get-color-from-palette($accent-palette);
+  }
+
+  &.warn-color {
+    color: mat.get-color-from-palette($warn-palette);
+  }
+}
