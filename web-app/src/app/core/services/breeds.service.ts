@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { catchError, map, Observable, of, tap } from 'rxjs';
+import { map, Observable, of } from 'rxjs';
 import { AppHttpClient } from '../http/app-http-client';
 import { Breed } from '../models/breed';
 import { BreedDTO } from '../models/dto/breed-dto';
@@ -16,9 +16,9 @@ export class BreedsService {
     let obs$: Observable<Breed>;
 
     if (breed) {
-      obs$ = of({ name: breed.name, subBreed: breed.subBreed });
+      return of({ name: breed.name, subBreed: breed.subBreed });
     } else {
-      obs$ = this.http.get('breeds/list/all/random', { responseRef: BreedDTO }).pipe(
+      return this.http.get('breeds/list/all/random', { responseRef: BreedDTO }).pipe(
         map((result: any) => new Map(Object.entries(result))),
         map((result) => {
           const entry: [string, string[]] = result.entries().next().value;
@@ -26,14 +26,6 @@ export class BreedsService {
         }),
       );
     }
-
-    return obs$.pipe(
-      tap((breed) => {
-        breed.picture = this.breedPicture(breed.name, breed.subBreed);
-        breed.pictures = this.breedPictures(breed.name, breed.subBreed);
-        breed.details = this.breedDetails(breed.name, breed.subBreed);
-      }),
-    );
   }
 
   randonBreed(): Observable<BreedDTO> {
@@ -42,24 +34,5 @@ export class BreedsService {
 
   breeds(): Observable<BreedDTO> {
     return this.http.get('breeds/list/all', { responseRef: BreedDTO });
-  }
-
-  breedPicture(breed: string, subBreed?: string): Observable<string> {
-    const subBreedPath = subBreed ? `/${subBreed}` : '';
-    return this.http.get(`breed/${breed}${subBreedPath}/images/random`, { responseRef: String });
-  }
-
-  breedPictures(breed: string, subBreed?: string, size: number = 50): Observable<string[]> {
-    const subBreedPath = subBreed ? `/${subBreed}` : '';
-    return this.http.get(`breed/${breed}${subBreedPath}/images/random/${size}`, { responseRef: String });
-  }
-
-  breedDetails(breed: string, subBreed?: string): Observable<any> {
-    const subBreedPath = subBreed ? `/${subBreed}` : '';
-    return this.http.get(`breed/${breed}${subBreedPath}`, { responseRef: Object }).pipe(
-      catchError((error) => {
-        return of(error.error.message);
-      }),
-    );
   }
 }

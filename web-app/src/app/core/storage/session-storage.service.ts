@@ -8,11 +8,14 @@ import { FavoriteBreed } from '../models/favorite-breed';
 })
 export class SessionStorageService {
   // store the URL so we can redirect after logging in
-  private readonly favorite$: BehaviorSubject<boolean | undefined> = new BehaviorSubject<boolean | undefined>(undefined);
+  private readonly favorite$: BehaviorSubject<FavoriteBreed | undefined> = new BehaviorSubject<FavoriteBreed | undefined>(undefined);
 
-  constructor(private storageService: StorageService) {}
+  constructor(private storageService: StorageService) {
+    const favorite = this.getFavotite();
+    this.favorite$.next(favorite);
+  }
 
-  get favoriteDog(): Subject<boolean | undefined> {
+  get favoriteDog(): Subject<FavoriteBreed | undefined> {
     return this.favorite$;
   }
 
@@ -25,6 +28,7 @@ export class SessionStorageService {
   /////////////////
   setFavorite(favorite: FavoriteBreed): void {
     this.storageService.setFavorite(favorite);
+    this.favorite$.next(favorite);
   }
 
   getFavotite(): FavoriteBreed | undefined {
@@ -37,6 +41,6 @@ export class SessionStorageService {
 
   removeFavorite(): void {
     this.storageService.clearFavorite();
-    this.favorite$.next(this.hasFavorite);
+    this.favorite$.next(undefined);
   }
 }

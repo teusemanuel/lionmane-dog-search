@@ -1,1 +1,9 @@
-<p>dog-breeds works!</p>
+<ng-template #subBreeds>
+	<app-sub-breeds [mainBreed]="mainBreedSelected" (clearSelection)="mainBreedSelected = undefined"
+		(selectSubBreed)="selectSubBreed($event)"></app-sub-breeds>
+</ng-template>
+
+<ng-container *ngIf="!mainBreedSelected?.subBreeds?.length; else subBreeds">
+	<app-main-breeds (selectBreed)="selectBreed($event)"></app-main-breeds>
+
+</ng-container>
