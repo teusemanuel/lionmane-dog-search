@@ -23,4 +23,4 @@ npm install
 ```
 npm run build-prod
 ```
-- 3º open a broser on url [http://localhost:4200](http://localhost:4200)
+- 3º deploy code generated from `/dist` on your server
